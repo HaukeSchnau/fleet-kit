@@ -1,0 +1,858 @@
+{
+  "coverage": {
+    "manual": 4,
+    "nix": 24,
+    "runtime": 1,
+    "stack": 2
+  },
+  "edges": [
+    {
+      "derived": true,
+      "from": "state:ci@edge:runs",
+      "kind": "backedUpTo",
+      "to": "ext:object-store"
+    },
+    {
+      "derived": true,
+      "from": "state:edge:ssh-host-keys",
+      "kind": "backedUpTo",
+      "to": "ext:object-store"
+    },
+    {
+      "derived": true,
+      "from": "state:forge@core:repositories",
+      "kind": "backedUpTo",
+      "to": "ext:object-store"
+    },
+    {
+      "derived": true,
+      "from": "host:core",
+      "kind": "buildsFrom",
+      "to": "ext:mirror",
+      "via": [
+        "internet"
+      ]
+    },
+    {
+      "derived": true,
+      "from": "host:core",
+      "kind": "buildsFrom",
+      "to": "forge@core"
+    },
+    {
+      "derived": true,
+      "from": "host:desk",
+      "kind": "buildsFrom",
+      "to": "ext:mirror",
+      "via": [
+        "internet"
+      ]
+    },
+    {
+      "derived": true,
+      "from": "host:desk",
+      "kind": "buildsFrom",
+      "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": true,
+      "from": "host:edge",
+      "kind": "buildsFrom",
+      "to": "ext:mirror",
+      "via": [
+        "internet"
+      ]
+    },
+    {
+      "derived": true,
+      "from": "host:edge",
+      "kind": "buildsFrom",
+      "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": true,
+      "from": "host:laptop",
+      "kind": "buildsFrom",
+      "to": "ext:mirror",
+      "via": [
+        "internet"
+      ]
+    },
+    {
+      "derived": true,
+      "from": "host:laptop",
+      "kind": "buildsFrom",
+      "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": true,
+      "from": "net:internet",
+      "kind": "enters",
+      "to": "route:www.example.net"
+    },
+    {
+      "derived": true,
+      "from": "net:tailnet",
+      "kind": "enters",
+      "to": "route:ci.example.net"
+    },
+    {
+      "derived": true,
+      "from": "net:tailnet",
+      "kind": "enters",
+      "to": "route:git.core.example.net"
+    },
+    {
+      "derived": false,
+      "from": "host:core",
+      "kind": "hostedBy",
+      "to": "ext:hoster"
+    },
+    {
+      "derived": false,
+      "from": "host:edge",
+      "kind": "hostedBy",
+      "to": "ext:hoster"
+    },
+    {
+      "derived": false,
+      "from": "host:core",
+      "kind": "memberOf",
+      "to": "net:internet"
+    },
+    {
+      "derived": false,
+      "from": "host:core",
+      "kind": "memberOf",
+      "to": "net:tailnet"
+    },
+    {
+      "derived": false,
+      "from": "host:desk",
+      "kind": "memberOf",
+      "to": "net:home-lan"
+    },
+    {
+      "derived": false,
+      "from": "host:desk",
+      "kind": "memberOf",
+      "to": "net:tailnet"
+    },
+    {
+      "derived": false,
+      "from": "host:edge",
+      "kind": "memberOf",
+      "to": "net:internet"
+    },
+    {
+      "derived": false,
+      "from": "host:edge",
+      "kind": "memberOf",
+      "to": "net:tailnet"
+    },
+    {
+      "derived": false,
+      "from": "host:laptop",
+      "kind": "memberOf",
+      "to": "net:tailnet"
+    },
+    {
+      "derived": true,
+      "from": "ext:vpn",
+      "kind": "provides",
+      "to": "net:tailnet"
+    },
+    {
+      "derived": false,
+      "from": "agents@desk",
+      "kind": "reads",
+      "to": "secret:agents/model-key"
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@desk",
+      "kind": "reads",
+      "to": "secret:ci/agent-token"
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@edge",
+      "kind": "reads",
+      "to": "secret:ci/agent-token"
+    },
+    {
+      "derived": false,
+      "from": "ci@edge",
+      "kind": "reads",
+      "to": "secret:ci/forge-token"
+    },
+    {
+      "derived": false,
+      "from": "ci@edge",
+      "kind": "reads",
+      "to": "secret:ci/webhook-secret"
+    },
+    {
+      "derived": false,
+      "from": "forge@core",
+      "kind": "reads",
+      "to": "secret:forge/admin-token"
+    },
+    {
+      "derived": false,
+      "from": "agents@desk",
+      "kind": "runsOn",
+      "to": "host:desk"
+    },
+    {
+      "derived": false,
+      "from": "agents@laptop",
+      "kind": "runsOn",
+      "to": "host:laptop"
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@desk",
+      "kind": "runsOn",
+      "to": "host:desk"
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@edge",
+      "kind": "runsOn",
+      "to": "host:edge"
+    },
+    {
+      "derived": false,
+      "from": "ci@edge",
+      "kind": "runsOn",
+      "to": "host:edge"
+    },
+    {
+      "derived": false,
+      "from": "forge@core",
+      "kind": "runsOn",
+      "to": "host:core"
+    },
+    {
+      "derived": false,
+      "from": "website@edge",
+      "kind": "runsOn",
+      "to": "host:edge"
+    },
+    {
+      "derived": false,
+      "from": "ci@edge",
+      "kind": "serves",
+      "to": "route:ci.example.net"
+    },
+    {
+      "derived": false,
+      "from": "forge@core",
+      "kind": "serves",
+      "to": "route:git.core.example.net"
+    },
+    {
+      "derived": false,
+      "from": "website@edge",
+      "kind": "serves",
+      "to": "route:www.example.net"
+    },
+    {
+      "derived": false,
+      "from": "agents@desk",
+      "kind": "storesIn",
+      "to": "state:agents@desk:workspaces"
+    },
+    {
+      "derived": false,
+      "from": "agents@laptop",
+      "kind": "storesIn",
+      "to": "state:agents@laptop:workspaces"
+    },
+    {
+      "derived": false,
+      "from": "ci@edge",
+      "kind": "storesIn",
+      "to": "state:ci@edge:runs"
+    },
+    {
+      "derived": false,
+      "from": "forge@core",
+      "kind": "storesIn",
+      "to": "state:forge@core:repositories"
+    },
+    {
+      "derived": false,
+      "from": "host:edge",
+      "kind": "storesIn",
+      "to": "state:edge:ssh-host-keys"
+    },
+    {
+      "derived": false,
+      "from": "agents@desk",
+      "kind": "uses",
+      "to": "ci@edge",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "agents@desk",
+      "kind": "uses",
+      "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "agents@laptop",
+      "kind": "uses",
+      "to": "ci@edge",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "agents@laptop",
+      "kind": "uses",
+      "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@desk",
+      "kind": "uses",
+      "to": "ci@edge",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@desk",
+      "kind": "uses",
+      "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@edge",
+      "kind": "uses",
+      "to": "ci@edge"
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@edge",
+      "kind": "uses",
+      "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "ci@edge",
+      "kind": "uses",
+      "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "forge@core",
+      "kind": "uses",
+      "to": "ext:mirror"
+    }
+  ],
+  "externals": {
+    "hoster": {
+      "provides": "rented servers",
+      "realizer": "manual"
+    },
+    "mirror": {
+      "provides": "public mirrors of the forge",
+      "realizer": "runtime"
+    },
+    "object-store": {
+      "provides": "the restic repository",
+      "realizer": "manual"
+    },
+    "vpn": {
+      "provides": "overlay coordination and its access policy",
+      "realizer": "stack"
+    }
+  },
+  "findings": [
+    {
+      "check": "capacity",
+      "id": "capacity:host:edge:budgets",
+      "message": "1 of 3 services declare no budget: website@edge",
+      "severity": "warn",
+      "subject": "host:edge"
+    },
+    {
+      "check": "capacity",
+      "id": "capacity:host:laptop:budgets",
+      "message": "1 of 1 services declare no budget: agents@laptop",
+      "severity": "warn",
+      "subject": "host:laptop"
+    },
+    {
+      "check": "sources",
+      "id": "sources:host:core",
+      "message": "core serves the forge its own rebuild needs; it relies on ext:mirror while forge@core is down",
+      "severity": "warn",
+      "subject": "host:core"
+    }
+  ],
+  "hosts": {
+    "core": {
+      "backup": {
+        "paths": [
+          "/var/lib/forge"
+        ],
+        "target": "object-store"
+      },
+      "ceilings": 6442450944,
+      "cpu": 4,
+      "deployedBy": "infra",
+      "health": {
+        "http": [
+          {
+            "instance": "forge@core",
+            "url": "https://git.core.example.net/api/healthz"
+          }
+        ],
+        "units": [
+          "forge.service"
+        ]
+      },
+      "instances": [
+        "forge@core"
+      ],
+      "memory": 8589934592,
+      "networks": {
+        "internet": {
+          "publicIngress": false
+        },
+        "tailnet": {
+          "address": "100.64.0.2",
+          "publicIngress": false
+        }
+      },
+      "platform": "nixos",
+      "power": "always-on",
+      "reserve": 1073741824,
+      "routes": [
+        {
+          "fqdn": "git.core.example.net",
+          "instance": "forge@core",
+          "port": 3000,
+          "runtime": false,
+          "static": false,
+          "visibility": "tailnet"
+        }
+      ],
+      "secrets": [
+        "forge/admin-token"
+      ],
+      "slices": {
+        "builds": {
+          "high": 3865470566,
+          "memory": 4294967296,
+          "swap": 2147483648
+        },
+        "services": {
+          "high": 966367641,
+          "memory": 1073741824
+        }
+      },
+      "ssh": {
+        "port": 22
+      },
+      "state": [],
+      "system": "aarch64-linux"
+    },
+    "desk": {
+      "backup": {
+        "paths": [],
+        "target": "object-store"
+      },
+      "ceilings": 28991029248,
+      "cpu": 16,
+      "deployedBy": "infra",
+      "health": {
+        "http": [],
+        "units": []
+      },
+      "instances": [
+        "agents@desk",
+        "ci-agent@desk"
+      ],
+      "memory": 34359738368,
+      "networks": {
+        "home-lan": {
+          "address": "192.168.1.10",
+          "publicIngress": false
+        },
+        "tailnet": {
+          "address": "100.64.0.3",
+          "publicIngress": false
+        }
+      },
+      "platform": "nixos",
+      "power": "sleeps",
+      "reserve": 2147483648,
+      "routes": [],
+      "secrets": [
+        "agents/model-key",
+        "ci/agent-token"
+      ],
+      "slices": {
+        "agents": {
+          "each": 4294967296,
+          "high": 15461882265,
+          "memory": 17179869184
+        },
+        "builds": {
+          "high": 7730941132,
+          "memory": 8589934592
+        },
+        "services": {
+          "high": 966367641,
+          "memory": 1073741824
+        }
+      },
+      "ssh": {
+        "port": 22
+      },
+      "state": [],
+      "system": "x86_64-linux"
+    },
+    "edge": {
+      "backup": {
+        "paths": [
+          "/etc/ssh",
+          "/var/lib/ci"
+        ],
+        "target": "object-store"
+      },
+      "ceilings": 5100273664,
+      "cpu": 4,
+      "deployedBy": "infra",
+      "health": {
+        "http": [],
+        "units": []
+      },
+      "instances": [
+        "ci-agent@edge",
+        "ci@edge",
+        "website@edge"
+      ],
+      "memory": 8589934592,
+      "networks": {
+        "internet": {
+          "publicIngress": true
+        },
+        "tailnet": {
+          "address": "100.64.0.1",
+          "publicIngress": false
+        }
+      },
+      "platform": "nixos",
+      "power": "always-on",
+      "reserve": 1073741824,
+      "routes": [
+        {
+          "fqdn": "ci.example.net",
+          "instance": "ci@edge",
+          "port": 8080,
+          "runtime": false,
+          "static": false,
+          "visibility": "tailnet"
+        },
+        {
+          "fqdn": "www.example.net",
+          "instance": "website@edge",
+          "runtime": false,
+          "static": true,
+          "visibility": "public"
+        }
+      ],
+      "secrets": [
+        "ci/agent-token",
+        "ci/forge-token",
+        "ci/webhook-secret"
+      ],
+      "slices": {
+        "ci": {
+          "each": 1073741824,
+          "high": 2899102924,
+          "memory": 3221225472
+        },
+        "services": {
+          "high": 724775731,
+          "memory": 805306368
+        }
+      },
+      "ssh": {
+        "port": 2222
+      },
+      "state": [
+        {
+          "backup": "daily",
+          "name": "ssh-host-keys",
+          "path": "/etc/ssh"
+        }
+      ],
+      "system": "aarch64-linux"
+    },
+    "laptop": {
+      "backup": {
+        "paths": [],
+        "target": "object-store"
+      },
+      "ceilings": 0,
+      "deployedBy": "infra",
+      "health": {
+        "http": [],
+        "units": []
+      },
+      "instances": [
+        "agents@laptop"
+      ],
+      "memory": 17179869184,
+      "networks": {
+        "tailnet": {
+          "address": "100.64.0.4",
+          "publicIngress": false
+        }
+      },
+      "platform": "darwin",
+      "power": "roaming",
+      "reserve": 0,
+      "routes": [],
+      "secrets": [],
+      "slices": {},
+      "ssh": {
+        "port": 22
+      },
+      "state": [],
+      "system": "aarch64-darwin"
+    }
+  },
+  "identities": [
+    "Alex Example",
+    "alex"
+  ],
+  "instances": {
+    "agents@desk": {
+      "endpoints": [],
+      "host": "desk",
+      "realizer": "nix",
+      "routes": [],
+      "secrets": [
+        "agents/model-key"
+      ],
+      "service": "agents",
+      "slice": {
+        "high": 483183820,
+        "memory": 536870912
+      },
+      "state": [
+        {
+          "backup": "none",
+          "name": "workspaces",
+          "path": "/home/agents"
+        }
+      ],
+      "uses": [
+        "ci@edge",
+        "forge@core"
+      ]
+    },
+    "agents@laptop": {
+      "endpoints": [],
+      "host": "laptop",
+      "realizer": "nix",
+      "routes": [],
+      "secrets": [],
+      "service": "agents",
+      "state": [
+        {
+          "backup": "none",
+          "name": "workspaces",
+          "path": "/home/agents"
+        }
+      ],
+      "uses": [
+        "ci@edge",
+        "forge@core"
+      ]
+    },
+    "ci-agent@desk": {
+      "endpoints": [],
+      "host": "desk",
+      "realizer": "nix",
+      "routes": [],
+      "secrets": [
+        "ci/agent-token"
+      ],
+      "service": "ci-agent",
+      "slice": {
+        "high": 483183820,
+        "memory": 536870912
+      },
+      "state": [],
+      "uses": [
+        "ci@edge",
+        "forge@core"
+      ]
+    },
+    "ci-agent@edge": {
+      "endpoints": [],
+      "host": "edge",
+      "realizer": "nix",
+      "routes": [],
+      "secrets": [
+        "ci/agent-token"
+      ],
+      "service": "ci-agent",
+      "slice": {
+        "high": 241591910,
+        "memory": 268435456
+      },
+      "state": [],
+      "uses": [
+        "ci@edge",
+        "forge@core"
+      ]
+    },
+    "ci@edge": {
+      "endpoints": [],
+      "host": "edge",
+      "realizer": "nix",
+      "routes": [
+        {
+          "fqdn": "ci.example.net",
+          "instance": "ci@edge",
+          "port": 8080,
+          "runtime": false,
+          "static": false,
+          "visibility": "tailnet"
+        }
+      ],
+      "secrets": [
+        "ci/forge-token",
+        "ci/webhook-secret"
+      ],
+      "service": "ci",
+      "slice": {
+        "high": 483183820,
+        "memory": 536870912
+      },
+      "state": [
+        {
+          "backup": "daily",
+          "name": "runs",
+          "path": "/var/lib/ci"
+        }
+      ],
+      "uses": [
+        "forge@core"
+      ]
+    },
+    "forge@core": {
+      "endpoints": [
+        {
+          "name": "ssh",
+          "port": 22,
+          "protocol": "ssh",
+          "visibility": "tailnet"
+        }
+      ],
+      "host": "core",
+      "realizer": "nix",
+      "routes": [
+        {
+          "fqdn": "git.core.example.net",
+          "instance": "forge@core",
+          "port": 3000,
+          "runtime": false,
+          "static": false,
+          "visibility": "tailnet"
+        }
+      ],
+      "secrets": [
+        "forge/admin-token"
+      ],
+      "service": "forge",
+      "slice": {
+        "high": 966367641,
+        "memory": 1073741824
+      },
+      "state": [
+        {
+          "backup": "hourly",
+          "name": "repositories",
+          "path": "/var/lib/forge"
+        }
+      ],
+      "uses": [
+        "ext:mirror"
+      ]
+    },
+    "website@edge": {
+      "endpoints": [],
+      "host": "edge",
+      "realizer": "nix",
+      "routes": [
+        {
+          "fqdn": "www.example.net",
+          "instance": "website@edge",
+          "runtime": false,
+          "static": true,
+          "visibility": "public"
+        }
+      ],
+      "secrets": [],
+      "service": "website",
+      "state": [],
+      "uses": []
+    }
+  },
+  "networks": {
+    "home-lan": {
+      "kind": "lan",
+      "realizer": "manual"
+    },
+    "internet": {
+      "kind": "internet",
+      "realizer": "manual"
+    },
+    "tailnet": {
+      "kind": "overlay",
+      "realizer": "stack"
+    }
+  },
+  "version": 1,
+  "zone": "example.net"
+}

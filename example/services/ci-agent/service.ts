@@ -5,6 +5,6 @@ export default service({
   host: ["edge", "desk"],
   description: "Runs CI jobs inside the host's ci budget",
   secrets: ["ci/agent-token"],
-  uses: ["ci", "forge"],
+  uses: ["ci", "forge", "cache"],
   budget: { edge: { memory: "256M" }, desk: { memory: "512M" } },
 })

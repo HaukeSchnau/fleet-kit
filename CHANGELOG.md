@@ -3,6 +3,10 @@
 Each snapshot squashes the commits that changed this tree in the private repository it is
 published from, and lists their subjects.
 
+## Snapshot 2, 2026-11-27
+
+- feat(example): a build cache on desk, so the example shows the power check
+
 ## Snapshot 1, 2026-11-27
 
 - feat: the fleet as a TypeScript model, phase 0

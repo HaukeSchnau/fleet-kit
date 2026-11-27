@@ -1,7 +1,7 @@
 {
   "coverage": {
     "manual": 4,
-    "nix": 24,
+    "nix": 27,
     "runtime": 1,
     "stack": 2
   },
@@ -98,6 +98,12 @@
       "from": "net:internet",
       "kind": "enters",
       "to": "route:www.example.net"
+    },
+    {
+      "derived": true,
+      "from": "net:tailnet",
+      "kind": "enters",
+      "to": "route:cache.desk.example.net"
     },
     {
       "derived": true,
@@ -221,6 +227,12 @@
     },
     {
       "derived": false,
+      "from": "cache@desk",
+      "kind": "runsOn",
+      "to": "host:desk"
+    },
+    {
+      "derived": false,
       "from": "ci-agent@desk",
       "kind": "runsOn",
       "to": "host:desk"
@@ -251,6 +263,12 @@
     },
     {
       "derived": false,
+      "from": "cache@desk",
+      "kind": "serves",
+      "to": "route:cache.desk.example.net"
+    },
+    {
+      "derived": false,
       "from": "ci@edge",
       "kind": "serves",
       "to": "route:ci.example.net"
@@ -278,6 +296,12 @@
       "from": "agents@laptop",
       "kind": "storesIn",
       "to": "state:agents@laptop:workspaces"
+    },
+    {
+      "derived": false,
+      "from": "cache@desk",
+      "kind": "storesIn",
+      "to": "state:cache@desk:store"
     },
     {
       "derived": false,
@@ -337,6 +361,12 @@
       "derived": false,
       "from": "ci-agent@desk",
       "kind": "uses",
+      "to": "cache@desk"
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@desk",
+      "kind": "uses",
       "to": "ci@edge",
       "via": [
         "tailnet"
@@ -347,6 +377,15 @@
       "from": "ci-agent@desk",
       "kind": "uses",
       "to": "forge@core",
+      "via": [
+        "tailnet"
+      ]
+    },
+    {
+      "derived": false,
+      "from": "ci-agent@edge",
+      "kind": "uses",
+      "to": "cache@desk",
       "via": [
         "tailnet"
       ]
@@ -414,6 +453,13 @@
       "message": "1 of 1 services declare no budget: agents@laptop",
       "severity": "warn",
       "subject": "host:laptop"
+    },
+    {
+      "check": "power",
+      "id": "power:cache@desk:ci-agent@edge",
+      "message": "ci-agent@edge needs cache@desk, but desk sleeps",
+      "severity": "warn",
+      "subject": "cache@desk"
     },
     {
       "check": "sources",
@@ -496,7 +542,7 @@
         "paths": [],
         "target": "object-store"
       },
-      "ceilings": 28991029248,
+      "ceilings": 29259464704,
       "cpu": 16,
       "deployedBy": "infra",
       "health": {
@@ -505,6 +551,7 @@
       },
       "instances": [
         "agents@desk",
+        "cache@desk",
         "ci-agent@desk"
       ],
       "memory": 34359738368,
@@ -521,7 +568,16 @@
       "platform": "nixos",
       "power": "sleeps",
       "reserve": 2147483648,
-      "routes": [],
+      "routes": [
+        {
+          "fqdn": "cache.desk.example.net",
+          "instance": "cache@desk",
+          "port": 5000,
+          "runtime": false,
+          "static": false,
+          "visibility": "tailnet"
+        }
+      ],
       "secrets": [
         "agents/model-key",
         "ci/agent-token"
@@ -537,8 +593,8 @@
           "memory": 8589934592
         },
         "services": {
-          "high": 966367641,
-          "memory": 1073741824
+          "high": 1207959552,
+          "memory": 1342177280
         }
       },
       "ssh": {
@@ -708,6 +764,35 @@
         "forge@core"
       ]
     },
+    "cache@desk": {
+      "endpoints": [],
+      "host": "desk",
+      "realizer": "nix",
+      "routes": [
+        {
+          "fqdn": "cache.desk.example.net",
+          "instance": "cache@desk",
+          "port": 5000,
+          "runtime": false,
+          "static": false,
+          "visibility": "tailnet"
+        }
+      ],
+      "secrets": [],
+      "service": "cache",
+      "slice": {
+        "high": 241591910,
+        "memory": 268435456
+      },
+      "state": [
+        {
+          "backup": "none",
+          "name": "store",
+          "path": "/var/cache/builds"
+        }
+      ],
+      "uses": []
+    },
     "ci-agent@desk": {
       "endpoints": [],
       "host": "desk",
@@ -723,6 +808,7 @@
       },
       "state": [],
       "uses": [
+        "cache@desk",
         "ci@edge",
         "forge@core"
       ]
@@ -742,6 +828,7 @@
       },
       "state": [],
       "uses": [
+        "cache@desk",
         "ci@edge",
         "forge@core"
       ]

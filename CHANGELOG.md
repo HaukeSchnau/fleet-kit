@@ -3,6 +3,10 @@
 Each snapshot squashes the commits that changed this tree in the private repository it is
 published from, and lists their subjects.
 
+## Snapshot 3, 2026-11-27
+
+- feat(ci): main keeps the built explorer as the pages step's output
+
 ## Snapshot 2, 2026-11-27
 
 - feat(example): a build cache on desk, so the example shows the power check
